@@ -10,7 +10,7 @@ import heapq
 
 class UserCreate(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
-
+    
     def post(self, request, *args, **kwargs):
 
         self.create(request, *args, **kwargs)
