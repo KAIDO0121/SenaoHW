@@ -56,8 +56,6 @@ class UserVerify(generics.GenericAPIView):
             return Response({"success": True, "reason": ""}, status=status.HTTP_200_OK)
         except Exception as e:
             self.throttler.addFailTS(name, curts)
-            return Response(e.__dict__['detail'], status=e.__dict__['statusCode'])
+            return Response(e.__dict__['detail'], status=e.__dict__['status_code'])
         
-                
-            # (account) : (1, pw1), (2, pw2), (3, pw3)
-            # if current login request have a ts - 1 > 5 min, clear the fail counter
+            

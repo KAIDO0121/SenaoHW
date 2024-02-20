@@ -25,16 +25,16 @@ class BaseUserSerializer(serializers.ModelSerializer):
     def validate_username(self, username):
 
         if not username or len(username) < 3 or len(username) > 32:
-            raise ValidationErr(detail = {"reason": "UserName must have a minimum length of 8 characters and a maximum length of 32 characters", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "UserName must have a minimum length of 8 characters and a maximum length of 32 characters", "success":False}, code=status.HTTP_400_BAD_REQUEST)
             
         return username
 
     def validate_password(self, password):
         if not password or len(password) < 3 or len(password) > 32:
-            raise ValidationErr(detail = {"reason": "Passwords must have a minimum length of 8 characters and a maximum length of 32 characters", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "Passwords must have a minimum length of 8 characters and a maximum length of 32 characters", "success":False}, code=status.HTTP_400_BAD_REQUEST)
         
         if not re.search(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,32}$', password):
-            raise ValidationErr(detail = {"reason": "Passwords must have at least 1 uppercase letter, 1 lowercase letter, and 1 number.", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "Passwords must have at least 1 uppercase letter, 1 lowercase letter, and 1 number.", "success":False}, code=status.HTTP_400_BAD_REQUEST)
 
         return password
 
@@ -46,16 +46,16 @@ class UserVerifySerializer(BaseUserSerializer):
     def validate_username(self, username):
 
         if not username or len(username) < 3 or len(username) > 32:
-            raise ValidationErr(detail = {"reason": "Invalid username", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "Invalid username", "success":False}, code=status.HTTP_400_BAD_REQUEST)
             
         return username
 
     def validate_password(self, password):
         if not password or len(password) < 3 or len(password) > 32:
-            raise ValidationErr(detail = {"reason": "Invalid password", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "Invalid password", "success":False}, code=status.HTTP_400_BAD_REQUEST)
         
         if not re.search(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,32}$', password):
-            raise ValidationErr(detail = {"reason": "Invalid password", "success":False}, statusCode=status.HTTP_400_BAD_REQUEST)
+            raise ValidationErr(detail = {"reason": "Invalid password", "success":False}, code=status.HTTP_400_BAD_REQUEST)
 
         return password
     
@@ -86,7 +86,7 @@ class UserCreateSerializer(BaseUserSerializer):
             User.objects.create(password = hashed_pwd, username = validated_data['username'])
         
         except IntegrityError as e:
-            raise IntegrityErr(detail = {"reason": f'{e.__cause__}', "success":False}, statusCode=status.HTTP_409_CONFLICT)
+            raise IntegrityErr(detail = {"reason": 'Username already exist', "success":False})
 
         return validated_data
             

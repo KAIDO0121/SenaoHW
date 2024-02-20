@@ -45,16 +45,18 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    # 'webapp.errHandler.ErrorMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
+
+# REST_FRAMEWORK = {
+#     'EXCEPTION_HANDLER': 'webapp.errHandler.custom_exception_handler'
+# }
 
 LOGGING = {
     'version': 1,
