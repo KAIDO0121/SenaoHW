@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+env.read_env(env.str('ENV_PATH', '../.env'))
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -101,11 +105,11 @@ WSGI_APPLICATION = 'SenaoHW.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'SenaoHW',
-        'USER': 'seanliao',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
