@@ -1,4 +1,4 @@
-# SenaoHW
+# Guide
 
 1. Make sure you installed docker and docker desktop as GUI tool
     - iOS
@@ -19,12 +19,13 @@
         - `DATABASE_NAME=senaohw`
         - `DATABASE_USER=seanliao`
         - `DATABASE_PASSWORD=1234`
-        - `DATABASE_HOST=my-postgres (this should match the service name inside docker-compose.yml)`
+        - `DATABASE_HOST=my-postgres`
+            - this value should match the service name inside the docker-compose.yml
         - `DATABASE_PORT=5432`
 
 5. Run `docker compose up`
 
-6. If this is the first time you start the services, open another terminal, and run:
+6. If this is the first time you start the services, open another terminal and run:
     - `docker compose run web python manage.py migrate`
 
-7. To verify that the application works as expected, try the apis with the documentation : https://documenter.getpostman.com/view/12313270/2sA2r9VhwW
+7. To verify that the application works as expected, refer to the <a href = "https://documenter.getpostman.com/view/12313270/2sA2r9VhwW">documentation</a> and try the apis
