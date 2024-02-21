@@ -54,9 +54,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
-# REST_FRAMEWORK = {
-#     'EXCEPTION_HANDLER': 'webapp.errHandler.custom_exception_handler'
-# }
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'webapp.errorHandler.custom_exception_handler'
+}
 
 LOGGING = {
     'version': 1,

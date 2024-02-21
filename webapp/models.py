@@ -9,8 +9,8 @@ class UserManager(models.Manager):
 class User(models.Model):
 
 
-    username = models.CharField("UserName", unique=True)
-    password = models.CharField("Password")
+    username = models.CharField("UserName", unique = True, blank = False)
+    password = models.CharField("Password", blank = False)
 
     def __str__(self):
         return self.username
